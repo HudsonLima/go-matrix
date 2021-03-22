@@ -82,7 +82,7 @@ curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/ec
 curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/invert"
 
 ### http://localhost:8080/api/flatten      
-curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/invert"
+curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/flatten"
 
 ### http://localhost:8080/api/sum          
 curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/sum"
