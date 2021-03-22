@@ -1,5 +1,5 @@
 ## Projects Name
-
+GoMatrix
 
 ## Description
 It's a Golang API that process matrix within .csv files
@@ -9,6 +9,13 @@ It's a Golang API that process matrix within .csv files
 ## URL
 
 ``` http://localhost:8080/ ```
+
+### http://localhost:8080/api/echo         curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/echo"
+### http://localhost:8080/api/invert       curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/invert"
+### http://localhost:8080/api/flatten      curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/invert"
+### http://localhost:8080/api/sum          curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/sum"
+### http://localhost:8080/api/multiply e.g curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/multiply"
+
 
 See the Postman sample API calls here: 
 
