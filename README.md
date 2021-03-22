@@ -10,7 +10,7 @@ Make sure to have Go installed on your machine
 You can download Go from Golang website at https://golang.org/dl/
 
 # Clone the app
-git clone https://github.com/HudsonLima/GoMatrix
+git clone https://github.com/HudsonLima/GoMatrix.git
 
 # Run the app
 cd .\GoMatrix\
