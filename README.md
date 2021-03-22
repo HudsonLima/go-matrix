@@ -10,14 +10,8 @@ It's a Golang API that process matrix within .csv files
 
 ``` http://localhost:8080/ ```
 
-### http://localhost:8080/api/echo         curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/echo"
-### http://localhost:8080/api/invert       curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/invert"
-### http://localhost:8080/api/flatten      curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/invert"
-### http://localhost:8080/api/sum          curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/sum"
-### http://localhost:8080/api/multiply e.g curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/multiply"
 
-
-See the Postman sample API calls here: 
+## See the Postman sample API calls here: 
 
 ## http://localhost:8080/api/echo
 
@@ -49,6 +43,25 @@ Returns the sum of the integers in the matrix
 Returns the product of the integers in the matrix
 
 ![image](https://user-images.githubusercontent.com/5431216/111933782-ee280c80-8a9e-11eb-85f5-23c26476ee0b.png)
+
+
+
+## See the CURL command sample API calls here:
+
+### http://localhost:8080/api/echo         
+curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/echo"
+
+### http://localhost:8080/api/invert       
+curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/invert"
+
+### http://localhost:8080/api/flatten      
+curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/invert"
+
+### http://localhost:8080/api/sum          
+curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/sum"
+
+### http://localhost:8080/api/multiply 
+curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8080/api/multiply"
 
 
 
