@@ -1,8 +1,24 @@
-## Projects Name
-GoMatrix
-
-## Description
+# GoMatrix
 It's a Golang API that process matrix from a given .csv file
+
+## :hammer: Setup
+
+```bash
+# Install the dependencies
+Make sure to have Go installed on your machine
+You can download Go from [golang.org](https://golang.org/dl/)
+
+# Clone the app
+git clone https://github.com/HudsonLima/GoMatrix
+
+# Run the app
+cd .\GoMatrix\
+go run .
+
+# Run Unit Tests
+cd .\GoMatrix\
+go test
+```
 
 ## URL
 
