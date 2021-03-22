@@ -2,7 +2,7 @@
 GoMatrix
 
 ## Description
-It's a Golang API that process matrix within .csv files
+It's a Golang API that process matrix from a given .csv file
 
 ## URL
 
