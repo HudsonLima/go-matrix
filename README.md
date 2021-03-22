@@ -4,9 +4,10 @@ It's a Golang API that process matrix from a given .csv file
 ## :hammer: Setup
 
 ```bash
+
 # Install the dependencies
 Make sure to have Go installed on your machine
-You can download Go from [golang.org](https://golang.org/dl/)
+You can download Go from Golang website at https://golang.org/dl/
 
 # Clone the app
 git clone https://github.com/HudsonLima/GoMatrix
@@ -33,7 +34,6 @@ go test
 | GET | /api/flatten | Returns the matrix as a 1 line string, with values separated by commas|
 | GET | /api/sum | Returns the sum of the integers in the matrix |
 | GET | /api/multiply | Returns the product of the integers in the matrix |
-
 
 
 
@@ -68,7 +68,8 @@ Returns the sum of the integers in the matrix
 
 Returns the product of the integers in the matrix
 
-![image](https://user-images.githubusercontent.com/5431216/111933782-ee280c80-8a9e-11eb-85f5-23c26476ee0b.png)
+![image](https://user-images.githubusercontent.com/5431216/111936789-2d595c00-8aa5-11eb-97d7-50858a14eb81.png)
+
 
 
 
