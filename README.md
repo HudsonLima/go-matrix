@@ -4,11 +4,20 @@ GoMatrix
 ## Description
 It's a Golang API that process matrix within .csv files
 
-
-
 ## URL
 
 ``` http://localhost:8080/ ```
+
+### Endpoints:
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| GET | /api/echo | Returns the matrix as a string in matrix format |
+| GET | /api/invert | Returns the matrix as a string in matrix format where the columns and rows are inverted|
+| GET | /api/flatten | Returns the matrix as a 1 line string, with values separated by commas|
+| GET | /api/sum | Returns the sum of the integers in the matrix |
+| GET | /api/multiply | Returns the product of the integers in the matrix |
+
 
 
 ## See the Postman sample API calls here: 
