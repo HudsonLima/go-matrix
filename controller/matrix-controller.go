@@ -17,11 +17,11 @@ var (
 type controller struct{}
 
 type MatrixController interface {
-	GetMatrixEcho(response  http.ResponseWriter, request *http.Request) 
-	GetMatrixInvert(response  http.ResponseWriter, request *http.Request) 
-	GetMatrixFlatten(response  http.ResponseWriter, request *http.Request) 
-	GetMatrixSum(response  http.ResponseWriter, request *http.Request) 
-	GetMatrixMultiply(response  http.ResponseWriter, request *http.Request) 
+	MatrixEcho(response  http.ResponseWriter, request *http.Request) 
+	MatrixInvert(response  http.ResponseWriter, request *http.Request) 
+	MatrixFlatten(response  http.ResponseWriter, request *http.Request) 
+	MatrixSum(response  http.ResponseWriter, request *http.Request) 
+	MatrixMultiply(response  http.ResponseWriter, request *http.Request) 
 }
 
 func NewMatrixController(service service.MatrixService) MatrixController {
@@ -31,9 +31,9 @@ func NewMatrixController(service service.MatrixService) MatrixController {
 
 
 /*Returns the matrix as a string in matrix format.*/
-func (*controller) GetMatrixEcho(response http.ResponseWriter, request *http.Request) {
+func (*controller) MatrixEcho(response http.ResponseWriter, request *http.Request) {
 
-	records, err := extractTextFromFile(response, request)
+	records, err := ExtractTextFromFile(response, request)
 
 	if err != nil {
 		response.Write([]byte(fmt.Sprintf("error %s\n ", err.Error())))
@@ -52,9 +52,9 @@ func (*controller) GetMatrixEcho(response http.ResponseWriter, request *http.Req
 }
 
 /*Returns the matrix as a string in matrix format where the columns and rows are inverted*/
-func (*controller) GetMatrixInvert(response http.ResponseWriter, request *http.Request) {
+func (*controller) MatrixInvert(response http.ResponseWriter, request *http.Request) {
 
-	records, err := extractTextFromFile(response, request)
+	records, err := ExtractTextFromFile(response, request)
 
 	if err != nil {
 		response.Write([]byte(fmt.Sprintf("error %s\n ", err.Error())))
@@ -75,7 +75,7 @@ func (*controller) GetMatrixInvert(response http.ResponseWriter, request *http.R
 /*Returns the matrix as a 1 line string, with values separated by commas*/
 func (*controller) GetMatrixFlatten(response http.ResponseWriter, request *http.Request) {
 
-	records, err := extractTextFromFile(response, request)
+	records, err := ExtractTextFromFile(response, request)
 
 	if err != nil {
 		response.Write([]byte(fmt.Sprintf("error %s\n", err.Error())))
@@ -96,7 +96,7 @@ func (*controller) GetMatrixFlatten(response http.ResponseWriter, request *http.
 /*Returns the sum of the integers in the matrix*/
 func (*controller) GetMatrixSum(response http.ResponseWriter, request *http.Request) {
 
-	records, err := extractTextFromFile(response, request)
+	records, err := ExtractTextFromFile(response, request)
 
 	if err != nil {
 		response.Write([]byte(fmt.Sprintf("error %s\n", err.Error())))
@@ -117,7 +117,7 @@ func (*controller) GetMatrixSum(response http.ResponseWriter, request *http.Requ
 /*Returns the product of the integers in the matrix*/
 func (*controller) GetMatrixMultiply(response http.ResponseWriter, request *http.Request) {
 
-	records, err := extractTextFromFile(response, request)
+	records, err := ExtractTextFromFile(response, request)
 
 	if err != nil {
 		response.Write([]byte(fmt.Sprintf("error %s\n", err.Error())))
@@ -135,7 +135,7 @@ func (*controller) GetMatrixMultiply(response http.ResponseWriter, request *http
 	fmt.Fprint(response, result)
 }
 
-func extractTextFromFile(response http.ResponseWriter, request *http.Request) ([][]string, error) {
+func ExtractTextFromFile(response http.ResponseWriter, request *http.Request) ([][]string, error) {
 	file, _, err := request.FormFile("file")
 	if err != nil {
 		response.Write([]byte(fmt.Sprintf("error %s", err.Error())))

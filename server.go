@@ -31,11 +31,11 @@ func handleRequests(httpRouter router.Router) {
 		fmt.Fprintf(response, "\n/api/multiply")
 	})
 
-	httpRouter.POST("/api/echo", matrixController.GetMatrixEcho)
-	httpRouter.POST("/api/invert", matrixController.GetMatrixInvert)
-	httpRouter.POST("/api/flatten", matrixController.GetMatrixFlatten)
-	httpRouter.POST("/api/sum", matrixController.GetMatrixSum)
-	httpRouter.POST("/api/multiply", matrixController.GetMatrixMultiply)
+	httpRouter.POST("/api/echo", matrixController.MatrixEcho)
+	httpRouter.POST("/api/invert", matrixController.MatrixInvert)
+	httpRouter.POST("/api/flatten", matrixController.MatrixFlatten)
+	httpRouter.POST("/api/sum", matrixController.MatrixSum)
+	httpRouter.POST("/api/multiply", matrixController.MatrixMultiply)
 
 	httpRouter.SERVE(port)
 }
