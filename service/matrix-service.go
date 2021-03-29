@@ -33,7 +33,7 @@ func (*service) Echo(records [][]string, channel chan string) {
 
 func (*service) Invert(records [][]string, channel chan string) {	
 
-	transposedRecords := transpose(records)
+	transposedRecords := Transpose(records)
 	var response string
 	for _, row := range transposedRecords {
 		response = fmt.Sprintf("%s%s\n", response, strings.Join(row, ","))
@@ -101,7 +101,7 @@ func (*service) Multiply(records [][]string, channel chan string)  {
 	channel <- strconv.FormatInt(multiply, 10)
 }
 
-func transpose(slice [][]string) [][]string {
+func Transpose(slice [][]string) [][]string {
 	xl := len(slice[0])
 	yl := len(slice)
 	result := make([][]string, xl)

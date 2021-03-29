@@ -136,12 +136,12 @@ func (*controller) GetMatrixMultiply(response http.ResponseWriter, request *http
 }
 
 func ExtractTextFromFile(response http.ResponseWriter, request *http.Request) ([][]string, error) {
-	file, _, err := request.FormFile("file")
+	file, _, err := request.FormFile("file")	
+	defer file.Close()
 	if err != nil {
 		response.Write([]byte(fmt.Sprintf("error %s", err.Error())))
 		return nil, errors.New(err.Error())
 	}
-	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
 	if err != nil {
 		response.Write([]byte(fmt.Sprintf("error %s", err.Error())))
