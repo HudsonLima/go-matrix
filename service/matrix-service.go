@@ -1,46 +1,58 @@
-package main
+package service
 
 import (
-	"encoding/csv"
-	"errors"
 	"fmt"
-	"net/http"
 	"strconv"
 	"strings"
 )
 
-func echo(records [][]string) string {
+type service struct{}
+
+type MatrixService interface {
+	Echo(records [][]string, channel chan string)  
+	Invert(records [][]string, channel chan string)
+	Flatten(records [][]string, channel chan string)
+	Sum(records [][]string, channel chan string) 
+	Multiply(records [][]string, channel chan string) 
+}
+
+func NewMatrixService() MatrixService {
+	return &service{}
+}
+
+
+func (*service) Echo(records [][]string, channel chan string) {
 
 	var response string
 	for _, row := range records {
 		response = fmt.Sprintf("%s%s\n", response, strings.Join(row, ","))
 	}
-	return response
+
+	channel <- response
 }
 
-func invert(records [][]string) string {	
+func (*service) Invert(records [][]string, channel chan string) {	
 
 	transposedRecords := transpose(records)
 	var response string
 	for _, row := range transposedRecords {
 		response = fmt.Sprintf("%s%s\n", response, strings.Join(row, ","))
 	}
-	return response
+
+	channel <- response
 }
 
-func flatten(records [][]string) string {
+func (*service) Flatten(records [][]string, channel chan string) {
 
 	var response string
 	for _, row := range records {
 		response = fmt.Sprintf("%s%s,", response, strings.Join(row, ","))
 	}
-
-	response = strings.TrimSuffix(response, ",")
-
-	return response
+	
+	channel <- strings.TrimSuffix(response, ",")	
 }
 
-func sum(records [][]string) int64 {
+func (*service) Sum(records [][]string, channel chan string)  {
 
 	var response string
 	for _, row := range records {
@@ -56,15 +68,15 @@ func sum(records [][]string) int64 {
 		value, err := strconv.ParseInt(result[i], 10, 64)
 
 		if err != nil {
-			return 0
+			return 
 		}
 		sum += value
 	}
 
-	return sum
+	channel <- strconv.FormatInt(sum, 10)
 }
 
-func multiply(records [][]string) int64 {
+func (*service) Multiply(records [][]string, channel chan string)  {
 
 	var response string
 	for _, row := range records {
@@ -81,33 +93,12 @@ func multiply(records [][]string) int64 {
 		value, err := strconv.ParseInt(result[i], 10, 64)
 
 		if err != nil {
-			return 0
+			return 
 		}
 		multiply *= value
 	}
 
-	return multiply
-}
-
-func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the HomePage!")
-	fmt.Println("Endpoint Hit: homePage")
-}
-
-func extractTextFromFile(w http.ResponseWriter, r *http.Request) ([][]string, error) {
-	file, _, err := r.FormFile("file")
-	if err != nil {
-		w.Write([]byte(fmt.Sprintf("error %s", err.Error())))
-		return nil, errors.New(err.Error())
-	}
-	defer file.Close()
-	records, err := csv.NewReader(file).ReadAll()
-	if err != nil {
-		w.Write([]byte(fmt.Sprintf("error %s", err.Error())))
-		return nil, errors.New(err.Error())
-	}
-
-	return records, nil
+	channel <- strconv.FormatInt(multiply, 10)
 }
 
 func transpose(slice [][]string) [][]string {

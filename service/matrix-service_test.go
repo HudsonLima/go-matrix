@@ -1,29 +1,31 @@
-package main
+package service
 
 import ( "testing" 
-"strconv"
 "strings"
 "fmt")
 
+var (
+	matrixService = NewMatrixService()
+	matrixChannel = make(chan string)
+)
 
-//Set of Unit Tests for matrixService.go
 
-func TestEchoFunction(t *testing.T) {	
+func TestEcho(t *testing.T) {	
 	var records = [][]string{ {"1","2","3"}, {"4","5","6"}, {"7","8","9"}}
 	var expected string
 	for _, row := range records {
 		expected = fmt.Sprintf("%s%s\n", expected, strings.Join(row, ","))
 	}
 
-	result := echo(records);
+	go matrixService.Echo(records, matrixChannel);	
+	result := <-matrixChannel
 
-	if(result != expected){
-		t.Errorf("echo was incorrect, got: %s, want: %s.", result, expected)
-	}
-	
+	 if(result != expected){
+		t.Errorf("invert was incorrect, got: %s, want: %s.", result, expected)
+	 }	
 }
 
-func TestInvertFunction(t *testing.T) {
+func TestInvert(t *testing.T) {
 	var records = [][]string{ {"1","2","3"}, {"4","5","6"}, {"7","8","9"}}
 	transposedRecords := [][]string{ {"1","4","7"}, {"2","5","8"}, {"3","6","9"}}	
 	var expected string
@@ -31,42 +33,46 @@ func TestInvertFunction(t *testing.T) {
 		expected = fmt.Sprintf("%s%s\n", expected, strings.Join(row, ","))
 	}
 
-	result := invert(records);
+	go matrixService.Invert(records, matrixChannel);	
+	result := <-matrixChannel
 
 	if(result != expected){
 		t.Errorf("invert was incorrect, got: %s, want: %s.", result, expected)
 	}
 }
 
-func TestFlattenFunction(t *testing.T) {
+func TestFlatten(t *testing.T) {
 	var records = [][]string{ {"1","2","3"}, {"4","5","6"}, {"7","8","9"}}
 	expected := "1,2,3,4,5,6,7,8,9"
 
-	result := flatten(records)
+	go matrixService.Flatten(records, matrixChannel);	
+	result := <-matrixChannel
 
 	if(result != expected){
 		t.Errorf("flatten was incorrect, got: %s, want: %s.", result, expected)
 	}
 }
 
-func TestSumFunction(t *testing.T) {
+func TestSum(t *testing.T) {
 	var records = [][]string{ {"1","2","3"}, {"4","5","6"}, {"7","8","9"}}
-	expected := int64(45)
+	expected := "45"
 
-	result := sum(records)
+	go matrixService.Sum(records, matrixChannel);	
+	result := <-matrixChannel
 
 	if(result != expected){
-		t.Errorf("sum was incorrect, got: %s, expected: %s.", strconv.Itoa(int(result)), strconv.Itoa(int(expected)))
+		t.Errorf("flatten was incorrect, got: %s, want: %s.", result, expected)
 	}
 }
 
-func TestMultiplyFunction(t *testing.T) {
+func TestMultiply(t *testing.T) {
 	var records = [][]string{ {"1","2","3"}, {"4","5","6"}, {"7","8","9"}}
-	expected := int64(362880)
+	expected := "362880"
 
-	result := multiply(records)
+	go matrixService.Multiply(records, matrixChannel);
+	result := <-matrixChannel
 
 	if(result != expected){
-		t.Errorf("multiply was incorrect, got: %s, expected: %s.", strconv.Itoa(int(result)), strconv.Itoa(int(expected)))
+		t.Errorf("flatten was incorrect, got: %s, want: %s.", result, expected)
 	}
 }
