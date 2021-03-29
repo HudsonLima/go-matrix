@@ -29,11 +29,11 @@ go test
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
-| GET | /api/echo | Returns the matrix as a string in matrix format |
-| GET | /api/invert | Returns the matrix as a string in matrix format where the columns and rows are inverted|
-| GET | /api/flatten | Returns the matrix as a 1 line string, with values separated by commas|
-| GET | /api/sum | Returns the sum of the integers in the matrix |
-| GET | /api/multiply | Returns the product of the integers in the matrix |
+| POST | /api/echo | Returns the matrix as a string in matrix format |
+| POST | /api/invert | Returns the matrix as a string in matrix format where the columns and rows are inverted|
+| POST | /api/flatten | Returns the matrix as a 1 line string, with values separated by commas|
+| POST | /api/sum | Returns the sum of the integers in the matrix |
+| POST | /api/multiply | Returns the product of the integers in the matrix |
 
 
 
@@ -76,19 +76,19 @@ Returns the product of the integers in the matrix
 ## See the CURL command sample API calls here:
 
 ### http://localhost:8000/api/echo         
-curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/echo"
+curl -X POST file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/echo"
 
 ### http://localhost:8000/api/invert       
-curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/invert"
+curl -X POST file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/invert"
 
 ### http://localhost:8000/api/flatten      
-curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/flatten"
+curl -X POST file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/flatten"
 
 ### http://localhost:8000/api/sum          
-curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/sum"
+curl -X POST file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/sum"
 
 ### http://localhost:8000/api/multiply 
-curl -F file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/multiply"
+curl -X POST file=@"/Users/Hudson/Documents/GoLang/matrix.csv" "localhost:8000/api/multiply"
 
 
 
